@@ -1,0 +1,15 @@
+{
+  "name": "scls-logistics-theme",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.cjs -i assets/src/main.css -o assets/css/main.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.cjs -i assets/src/main.css -o assets/css/main.css --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
