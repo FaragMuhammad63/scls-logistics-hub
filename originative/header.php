@@ -5,31 +5,8 @@ if (!defined('ABSPATH')) {
 }
 
 $is_home = is_front_page();
-$posts_page_id = get_option('page_for_posts');
-$blog_url = $posts_page_id ? get_permalink($posts_page_id) : home_url('/blog/');
 $contact_page = get_page_by_path('contact');
 $contact_url = $contact_page ? get_permalink($contact_page) : home_url('/contact/');
-$services_url = home_url('/services/');
-$news_url = home_url('/news/');
-$service_slugs = array('air-freight', 'sea-freight', 'land-transportation', 'customs-clearance', 'warehousing', 'control-tower');
-$current_slug = is_page() ? get_post_field('post_name', get_queried_object_id()) : '';
-$is_services = is_page('services') || is_page_template('page-services.php') || is_page_template('page-service-detail.php') || in_array($current_slug, $service_slugs, true);
-$is_blog = is_home() || is_singular('post') || is_category() || is_tag() || is_date();
-$is_news = is_post_type_archive('news') || is_singular('news');
-$is_contact = is_page('contact') || is_page_template('page-contact.php');
-$primary_links = array(
-  array('label' => __('Services', 'scls-logistics'), 'href' => $services_url, 'active' => $is_services),
-  array('label' => __('Blog', 'scls-logistics'), 'href' => $blog_url, 'active' => $is_blog),
-  array('label' => __('News', 'scls-logistics'), 'href' => $news_url, 'active' => $is_news),
-  array('label' => __('Contact', 'scls-logistics'), 'href' => $contact_url, 'active' => $is_contact),
-);
-$home_anchors = array(
-  array('label' => __('About', 'scls-logistics'), 'href' => '#about'),
-  array('label' => __('Services', 'scls-logistics'), 'href' => '#services'),
-  array('label' => __('Industries', 'scls-logistics'), 'href' => '#industries'),
-  array('label' => __('Why SCLS', 'scls-logistics'), 'href' => '#why-scls'),
-  array('label' => __('Accreditations', 'scls-logistics'), 'href' => '#accreditations'),
-);
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -49,25 +26,17 @@ $home_anchors = array(
           </div>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-1">
-          <?php if ($is_home) : ?>
-            <?php foreach ($home_anchors as $anchor) : ?>
-              <button
-                type="button"
-                class="scls-nav-button"
-                data-scroll-target="<?php echo esc_attr($anchor['href']); ?>"
-              >
-                <?php echo esc_html($anchor['label']); ?>
-              </button>
-            <?php endforeach; ?>
-          <?php endif; ?>
-
-          <?php foreach ($primary_links as $link) : ?>
-            <?php $active_class = $link['active'] ? ' is-active' : ''; ?>
-            <a class="scls-nav-link<?php echo esc_attr($active_class); ?>" href="<?php echo esc_url($link['href']); ?>">
-              <?php echo esc_html($link['label']); ?>
-            </a>
-          <?php endforeach; ?>
+        <nav class="hidden lg:flex items-center gap-1" aria-label="<?php esc_attr_e('Primary', 'scls-logistics'); ?>">
+          <?php
+          wp_nav_menu(array(
+            'theme_location' => 'primary',
+            'container' => false,
+            'menu_class' => 'scls-nav-menu',
+            'fallback_cb' => false,
+            'depth' => 3,
+            'walker' => new Scls_Logistics_Nav_Walker('desktop'),
+          ));
+          ?>
         </nav>
 
         <div class="hidden lg:flex items-center gap-3">
@@ -88,26 +57,17 @@ $home_anchors = array(
     </div>
 
     <div class="scls-mobile-menu" data-scls-mobile-menu>
-      <nav class="container mx-auto px-4 py-4 flex flex-col gap-1">
-        <?php if ($is_home) : ?>
-          <?php foreach ($home_anchors as $anchor) : ?>
-            <button
-              type="button"
-              class="scls-nav-button scls-nav-button-mobile"
-              data-scroll-target="<?php echo esc_attr($anchor['href']); ?>"
-            >
-              <?php echo esc_html($anchor['label']); ?>
-            </button>
-          <?php endforeach; ?>
-          <div class="h-px bg-border my-2"></div>
-        <?php endif; ?>
-
-        <?php foreach ($primary_links as $link) : ?>
-          <?php $active_class = $link['active'] ? ' is-active' : ''; ?>
-          <a class="scls-nav-link scls-nav-link-mobile<?php echo esc_attr($active_class); ?>" href="<?php echo esc_url($link['href']); ?>">
-            <?php echo esc_html($link['label']); ?>
-          </a>
-        <?php endforeach; ?>
+      <nav class="container mx-auto px-4 py-4 flex flex-col gap-1" aria-label="<?php esc_attr_e('Primary', 'scls-logistics'); ?>">
+        <?php
+        wp_nav_menu(array(
+          'theme_location' => 'primary',
+          'container' => false,
+          'menu_class' => 'scls-nav-menu scls-nav-menu-mobile',
+          'fallback_cb' => false,
+          'depth' => 3,
+          'walker' => new Scls_Logistics_Nav_Walker('mobile'),
+        ));
+        ?>
 
         <div class="mt-4">
           <a href="<?php echo esc_url($contact_url); ?>" class="scls-button scls-button-accent w-full">

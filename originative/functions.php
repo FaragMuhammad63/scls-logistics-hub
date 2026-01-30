@@ -4,6 +4,45 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
+$scls_theme_dir = get_template_directory();
+$scls_walker_expected = $scls_theme_dir . '/inc/class-scls-nav-walker.php';
+$scls_walker_path = $scls_walker_expected;
+
+if (!file_exists($scls_walker_path)) {
+  $scls_inc_dir = $scls_theme_dir . '/inc';
+  if (is_dir($scls_inc_dir)) {
+    $scls_target = strtolower(basename($scls_walker_expected));
+    foreach (new DirectoryIterator($scls_inc_dir) as $scls_file) {
+      if (!$scls_file->isFile()) {
+        continue;
+      }
+      if (strtolower($scls_file->getFilename()) === $scls_target) {
+        $scls_walker_path = $scls_file->getPathname();
+        break;
+      }
+    }
+  }
+}
+
+if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+  error_log(sprintf(
+    '[SCLS] Theme dir: %s | Walker expected: %s | Exists: %s',
+    $scls_theme_dir,
+    $scls_walker_expected,
+    file_exists($scls_walker_path) ? 'yes' : 'no'
+  ));
+}
+
+if (file_exists($scls_walker_path)) {
+  require_once $scls_walker_path;
+} else {
+  error_log('[SCLS] Missing nav walker file. Falling back to core walker.');
+}
+
+if (!class_exists('Scls_Logistics_Nav_Walker')) {
+  class Scls_Logistics_Nav_Walker extends Walker_Nav_Menu {}
+}
+
 function scls_logistics_enqueue_assets() {
   $theme_version = wp_get_theme()->get('Version');
   $theme_uri = get_template_directory_uri();
