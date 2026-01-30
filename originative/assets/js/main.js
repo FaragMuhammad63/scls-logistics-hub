@@ -88,5 +88,6 @@
         observer.observe(counter);
       });
     }
+
   });
 })();
