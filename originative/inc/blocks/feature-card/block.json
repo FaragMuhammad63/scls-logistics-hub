@@ -1,0 +1,30 @@
+{
+  "apiVersion": 2,
+  "name": "originative/feature-card",
+  "title": "Originative Feature Card",
+  "category": "originative",
+  "icon": "star-filled",
+  "description": "Feature card used in About and Why SCLS sections.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Feature Title"
+    },
+    "body": {
+      "type": "string",
+      "default": "Feature description goes here."
+    },
+    "iconName": {
+      "type": "string",
+      "default": "target"
+    },
+    "variant": {
+      "type": "string",
+      "default": "light"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

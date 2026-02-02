@@ -1,0 +1,42 @@
+{
+  "apiVersion": 2,
+  "name": "originative/cta-button",
+  "title": "Originative Button/CTA",
+  "category": "originative",
+  "icon": "button",
+  "description": "SCLS styled button or CTA link.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": "Call to Action"
+    },
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "variant": {
+      "type": "string",
+      "default": "default"
+    },
+    "size": {
+      "type": "string",
+      "default": "default"
+    },
+    "iconName": {
+      "type": "string",
+      "default": ""
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "openInNewTab": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

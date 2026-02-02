@@ -13,9 +13,7 @@
     <div class="wp-block-group grid lg:grid-cols-2 gap-16 items-center">
       <!-- wp:group {"layout":{"type":"default"}} -->
       <div class="wp-block-group">
-        <!-- wp:paragraph {"className":"inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4"} -->
-        <p class="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">About SCLS</p>
-        <!-- /wp:paragraph -->
+        <!-- wp:originative/badge-pill {"text":"About SCLS","variant":"accent-soft","size":"md","className":"mb-4"} /-->
 
         <!-- wp:heading {"level":2,"className":"text-3xl md:text-4xl font-bold text-foreground mb-6"} -->
         <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6">Who We Are</h2>
@@ -48,31 +46,15 @@
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:html -->
-    <div class="grid md:grid-cols-3 gap-6 mt-16">
-      <div class="group p-8 rounded-2xl bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
-        <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-          [scls_icon name="target" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-foreground mb-3">Our Mission</h3>
-        <p class="text-muted-foreground leading-relaxed">Deliver seamless, reliable logistics solutions that empower businesses to move goods efficiently across borders.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
-        <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-          [scls_icon name="eye" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-foreground mb-3">Our Vision</h3>
-        <p class="text-muted-foreground leading-relaxed">To be the leading logistics partner in the GCC, known for innovation, integrity, and operational excellence.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
-        <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-          [scls_icon name="globe" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-foreground mb-3">Our Coverage</h3>
-        <p class="text-muted-foreground leading-relaxed">Saudi Arabia, GCC, Middle East, and global trade corridors spanning Asia, Europe, Africa, and the Americas.</p>
-      </div>
+    <!-- wp:group {"className":"grid md:grid-cols-3 gap-6 mt-16","layout":{"type":"default"}} -->
+    <div class="wp-block-group grid md:grid-cols-3 gap-6 mt-16">
+      <!-- wp:originative/feature-card {"title":"Our Mission","body":"Deliver seamless, reliable logistics solutions that empower businesses to move goods efficiently across borders.","iconName":"target","variant":"light"} /-->
+
+      <!-- wp:originative/feature-card {"title":"Our Vision","body":"To be the leading logistics partner in the GCC, known for innovation, integrity, and operational excellence.","iconName":"eye","variant":"light"} /-->
+
+      <!-- wp:originative/feature-card {"title":"Our Coverage","body":"Saudi Arabia, GCC, Middle East, and global trade corridors spanning Asia, Europe, Africa, and the Americas.","iconName":"globe","variant":"light"} /-->
     </div>
-    <!-- /wp:html -->
+    <!-- /wp:group -->
   </div>
   <!-- /wp:group -->
 </section>

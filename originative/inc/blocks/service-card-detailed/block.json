@@ -1,0 +1,41 @@
+{
+  "apiVersion": 2,
+  "name": "originative/service-card-detailed",
+  "title": "Originative Service Card (Detailed)",
+  "category": "originative",
+  "icon": "feedback",
+  "description": "Detailed service card with tags and link.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Service Title"
+    },
+    "body": {
+      "type": "string",
+      "default": "Service description goes here."
+    },
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "iconName": {
+      "type": "string",
+      "default": "plane"
+    },
+    "linkLabel": {
+      "type": "string",
+      "default": "Learn More"
+    },
+    "tags": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

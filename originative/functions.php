@@ -120,6 +120,13 @@ if (file_exists($scls_shortcodes_path)) {
   error_log('[SCLS] Missing shortcodes file at ' . $scls_shortcodes_path);
 }
 
+$scls_blocks_path = get_theme_file_path('/inc/blocks/register.php');
+if (file_exists($scls_blocks_path)) {
+  require_once $scls_blocks_path;
+} elseif (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+  error_log('[SCLS] Missing blocks register file at ' . $scls_blocks_path);
+}
+
 $scls_demo_path = get_theme_file_path('/inc/demo-content.php');
 if (file_exists($scls_demo_path)) {
   require_once $scls_demo_path;

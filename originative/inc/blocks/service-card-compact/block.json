@@ -1,0 +1,34 @@
+{
+  "apiVersion": 2,
+  "name": "originative/service-card-compact",
+  "title": "Originative Service Card (Compact)",
+  "category": "originative",
+  "icon": "index-card",
+  "description": "Compact service card with icon, title, description, and link.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Service Title"
+    },
+    "body": {
+      "type": "string",
+      "default": "Service description goes here."
+    },
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "iconName": {
+      "type": "string",
+      "default": "plane"
+    },
+    "linkLabel": {
+      "type": "string",
+      "default": "Learn More"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

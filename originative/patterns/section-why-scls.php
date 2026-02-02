@@ -15,9 +15,7 @@
   <div class="wp-block-group container mx-auto px-4 lg:px-8 relative z-10">
     <!-- wp:group {"className":"text-center max-w-3xl mx-auto mb-16","layout":{"type":"default"}} -->
     <div class="wp-block-group text-center max-w-3xl mx-auto mb-16">
-      <!-- wp:paragraph {"className":"inline-block px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4"} -->
-      <p class="inline-block px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">Our Advantage</p>
-      <!-- /wp:paragraph -->
+      <!-- wp:originative/badge-pill {"text":"Our Advantage","variant":"accent-strong","size":"md","className":"mb-4"} /-->
 
       <!-- wp:heading {"level":2,"className":"text-3xl md:text-4xl font-bold text-primary-foreground mb-4"} -->
       <h2 class="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Why Choose SCLS</h2>
@@ -29,45 +27,15 @@
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:html -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="group p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-        <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/30 transition-colors">
-          [scls_icon name="globe" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-primary-foreground mb-3">Global Reach</h3>
-        <p class="text-primary-foreground/70 leading-relaxed">Extensive network spanning Saudi Arabia, GCC, Middle East, and major global trade corridors.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-        <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/30 transition-colors">
-          [scls_icon name="cpu" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-primary-foreground mb-3">Technology-Driven Efficiency</h3>
-        <p class="text-primary-foreground/70 leading-relaxed">Advanced tracking systems, EDI integration, and real-time visibility platforms.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-        <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/30 transition-colors">
-          [scls_icon name="users" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-primary-foreground mb-3">Client-Centric Solutions</h3>
-        <p class="text-primary-foreground/70 leading-relaxed">Customized logistics strategies designed around your specific business requirements.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-        <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/30 transition-colors">
-          [scls_icon name="file-check" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-primary-foreground mb-3">Regulatory Expertise</h3>
-        <p class="text-primary-foreground/70 leading-relaxed">Deep knowledge of Saudi and international trade regulations, customs procedures, and compliance requirements.</p>
-      </div>
-      <div class="group p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-        <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/30 transition-colors">
-          [scls_icon name="landmark" size="28"]
-        </div>
-        <h3 class="text-xl font-semibold text-primary-foreground mb-3">Vision 2030 Alignment</h3>
-        <p class="text-primary-foreground/70 leading-relaxed">Supporting Saudi Arabia's economic transformation through world-class logistics infrastructure.</p>
-      </div>
+    <!-- wp:group {"className":"grid md:grid-cols-2 lg:grid-cols-3 gap-6","layout":{"type":"default"}} -->
+    <div class="wp-block-group grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- wp:originative/feature-card {"title":"Global Reach","body":"Extensive network spanning Saudi Arabia, GCC, Middle East, and major global trade corridors.","iconName":"globe","variant":"dark"} /-->
+      <!-- wp:originative/feature-card {"title":"Technology-Driven Efficiency","body":"Advanced tracking systems, EDI integration, and real-time visibility platforms.","iconName":"cpu","variant":"dark"} /-->
+      <!-- wp:originative/feature-card {"title":"Client-Centric Solutions","body":"Customized logistics strategies designed around your specific business requirements.","iconName":"users","variant":"dark"} /-->
+      <!-- wp:originative/feature-card {"title":"Regulatory Expertise","body":"Deep knowledge of Saudi and international trade regulations, customs procedures, and compliance requirements.","iconName":"file-check","variant":"dark"} /-->
+      <!-- wp:originative/feature-card {"title":"Vision 2030 Alignment","body":"Supporting Saudi Arabia's economic transformation through world-class logistics infrastructure.","iconName":"landmark","variant":"dark"} /-->
     </div>
-    <!-- /wp:html -->
+    <!-- /wp:group -->
   </div>
   <!-- /wp:group -->
 </section>

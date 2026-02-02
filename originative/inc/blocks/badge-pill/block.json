@@ -1,0 +1,30 @@
+{
+  "apiVersion": 2,
+  "name": "originative/badge-pill",
+  "title": "Originative Badge/Pill",
+  "category": "originative",
+  "icon": "tag",
+  "description": "Small badge or pill with optional icon.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": "Badge"
+    },
+    "iconName": {
+      "type": "string",
+      "default": ""
+    },
+    "variant": {
+      "type": "string",
+      "default": "accent-soft"
+    },
+    "size": {
+      "type": "string",
+      "default": "md"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "apiVersion": 2,
+  "name": "originative/kpi-counter-card",
+  "title": "Originative KPI Counter Card",
+  "category": "originative",
+  "icon": "chart-bar",
+  "description": "KPI card with animated counter.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "iconName": {
+      "type": "string",
+      "default": "package"
+    },
+    "value": {
+      "type": "number",
+      "default": 100
+    },
+    "suffix": {
+      "type": "string",
+      "default": "+"
+    },
+    "label": {
+      "type": "string",
+      "default": "KPI Label"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

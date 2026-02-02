@@ -11,9 +11,7 @@
   <div class="wp-block-group container mx-auto px-4 lg:px-8">
     <!-- wp:group {"className":"text-center max-w-3xl mx-auto mb-16","layout":{"type":"default"}} -->
     <div class="wp-block-group text-center max-w-3xl mx-auto mb-16">
-      <!-- wp:paragraph {"className":"inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4"} -->
-      <p class="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">Get Started</p>
-      <!-- /wp:paragraph -->
+      <!-- wp:originative/badge-pill {"text":"Get Started","variant":"accent-soft","size":"md","className":"mb-4"} /-->
 
       <!-- wp:heading {"level":2,"className":"text-3xl md:text-4xl font-bold text-foreground mb-4"} -->
       <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">Ready to move your supply chain with confidence?</h2>
@@ -37,55 +35,27 @@
       </div>
       <!-- /wp:group -->
 
-      <!-- wp:html -->
-      <div class="flex flex-col justify-center">
-        <div class="space-y-6 mb-8">
-          <a href="tel:+966XXXXXXXX" class="flex items-center gap-4 p-5 rounded-xl bg-card border border-border hover:border-accent/30 transition-colors group">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-              [scls_icon name="phone" size="24"]
-            </div>
-            <div>
-              <p class="text-sm text-muted-foreground">Call Us</p>
-              <p class="font-semibold text-foreground">+966 XX XXX XXXX</p>
-            </div>
-          </a>
-          <a href="mailto:info@scls.sa" class="flex items-center gap-4 p-5 rounded-xl bg-card border border-border hover:border-accent/30 transition-colors group">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-              [scls_icon name="mail" size="24"]
-            </div>
-            <div>
-              <p class="text-sm text-muted-foreground">Email Us</p>
-              <p class="font-semibold text-foreground">info@scls.sa</p>
-            </div>
-          </a>
-          <a href="https://wa.me/966XXXXXXXX" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-5 rounded-xl bg-card border border-border hover:border-accent/30 transition-colors group">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-              [scls_icon name="message-circle" size="24"]
-            </div>
-            <div>
-              <p class="text-sm text-muted-foreground">WhatsApp</p>
-              <p class="font-semibold text-foreground">Chat with Us</p>
-            </div>
-          </a>
-          <div class="flex items-center gap-4 p-5 rounded-xl bg-card border border-border">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-              [scls_icon name="map-pin" size="24"]
-            </div>
-            <div>
-              <p class="text-sm text-muted-foreground">Visit Us</p>
-              <p class="font-semibold text-foreground">Riyadh, Saudi Arabia</p>
-            </div>
-          </div>
+      <!-- wp:group {"className":"flex flex-col justify-center","layout":{"type":"default"}} -->
+      <div class="wp-block-group flex flex-col justify-center">
+        <!-- wp:group {"className":"space-y-6 mb-8","layout":{"type":"default"}} -->
+        <div class="wp-block-group space-y-6 mb-8">
+          <!-- wp:originative/contact-method-card {"label":"Call Us","value":"+966 XX XXX XXXX","url":"tel:+966XXXXXXXX","iconName":"phone"} /-->
+          <!-- wp:originative/contact-method-card {"label":"Email Us","value":"info@scls.sa","url":"mailto:info@scls.sa","iconName":"mail"} /-->
+          <!-- wp:originative/contact-method-card {"label":"WhatsApp","value":"Chat with Us","url":"https://wa.me/966XXXXXXXX","iconName":"message-circle","openInNew":true} /-->
+          <!-- wp:originative/contact-method-card {"label":"Visit Us","value":"Riyadh, Saudi Arabia","iconName":"map-pin"} /-->
         </div>
+        <!-- /wp:group -->
 
+        <!-- wp:html -->
         <div class="aspect-video rounded-2xl bg-muted overflow-hidden border border-border">
           <div class="w-full h-full flex items-center justify-center text-muted-foreground">
             [scls_icon name="map-pin" size="32" class="is-current"]
             <span>Map Integration</span>
           </div>
         </div>
+        <!-- /wp:html -->
       </div>
-      <!-- /wp:html -->
+      <!-- /wp:group -->
     </div>
     <!-- /wp:group -->
   </div>

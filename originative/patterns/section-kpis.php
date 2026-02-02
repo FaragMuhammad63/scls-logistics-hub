@@ -9,74 +9,70 @@
 <section id="accreditations" class="wp-block-group py-24 bg-surface-sunken">
   <!-- wp:group {"className":"container mx-auto px-4 lg:px-8","layout":{"type":"default"}} -->
   <div class="wp-block-group container mx-auto px-4 lg:px-8">
-    <!-- wp:html -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card text-center">
-        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-          [scls_icon name="package" size="24"]
-        </div>
-        <span class="text-4xl md:text-5xl font-bold text-foreground" data-scls-counter data-value="10000">0</span>
-        <span class="text-4xl md:text-5xl font-bold text-foreground">+</span>
-        <p class="text-muted-foreground text-sm mt-2">Shipments Handled</p>
-      </div>
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card text-center">
-        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-          [scls_icon name="clock" size="24"]
-        </div>
-        <span class="text-4xl md:text-5xl font-bold text-foreground" data-scls-counter data-value="24">0</span>
-        <span class="text-4xl md:text-5xl font-bold text-foreground">hrs</span>
-        <p class="text-muted-foreground text-sm mt-2">Average Clearance Time</p>
-      </div>
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card text-center">
-        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-          [scls_icon name="map-pin" size="24"]
-        </div>
-        <span class="text-4xl md:text-5xl font-bold text-foreground" data-scls-counter data-value="50">0</span>
-        <span class="text-4xl md:text-5xl font-bold text-foreground">+</span>
-        <p class="text-muted-foreground text-sm mt-2">Countries Covered</p>
-      </div>
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card text-center">
-        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-          [scls_icon name="thumbs-up" size="24"]
-        </div>
-        <span class="text-4xl md:text-5xl font-bold text-foreground" data-scls-counter data-value="98">0</span>
-        <span class="text-4xl md:text-5xl font-bold text-foreground">%</span>
-        <p class="text-muted-foreground text-sm mt-2">Client Satisfaction</p>
-      </div>
-    </div>
+    <!-- wp:group {"className":"grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16","layout":{"type":"default"}} -->
+    <div class="wp-block-group grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      <!-- wp:originative/kpi-counter-card {"iconName":"package","value":10000,"suffix":"+","label":"Shipments Handled"} /-->
 
+      <!-- wp:originative/kpi-counter-card {"iconName":"clock","value":24,"suffix":"hrs","label":"Average Clearance Time"} /-->
+
+      <!-- wp:originative/kpi-counter-card {"iconName":"map-pin","value":50,"suffix":"+","label":"Countries Covered"} /-->
+
+      <!-- wp:originative/kpi-counter-card {"iconName":"thumbs-up","value":98,"suffix":"%","label":"Client Satisfaction"} /-->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:html -->
     <div class="p-6 rounded-2xl bg-primary mb-16">
       <p class="text-center text-primary-foreground font-medium text-lg">
         [scls_icon name="sparkles" size="18"]
         Digital Integration with Customs Single Window &amp; EDI Systems
       </p>
     </div>
+    <!-- /wp:html -->
 
-    <div class="grid lg:grid-cols-2 gap-8 mb-16">
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card">
+    <!-- wp:group {"className":"grid lg:grid-cols-2 gap-8 mb-16","layout":{"type":"default"}} -->
+    <div class="wp-block-group grid lg:grid-cols-2 gap-8 mb-16">
+      <!-- wp:group {"className":"p-8 rounded-2xl bg-card border border-border shadow-card","layout":{"type":"default"}} -->
+      <div class="wp-block-group p-8 rounded-2xl bg-card border border-border shadow-card">
+        <!-- wp:heading {"level":3,"className":"text-xl font-semibold text-foreground mb-6"} -->
         <h3 class="text-xl font-semibold text-foreground mb-6">Accreditations</h3>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">IATA Cargo Agent Accreditation</span>
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">FIATA Membership</span>
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">ISO 9001</span>
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">IATA DGR Certified Staff</span>
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">Dangerous Goods Transport License</span>
-          <span class="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">Cargo Insurance Provider Registration</span>
-        </div>
-      </div>
-      <div class="p-8 rounded-2xl bg-card border border-border shadow-card">
-        <h3 class="text-xl font-semibold text-foreground mb-6">Regulatory Compliance</h3>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">GACA</span>
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">TGA</span>
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">WASHAJ</span>
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">FASAH</span>
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">SABER</span>
-          <span class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">SFDA</span>
-        </div>
-      </div>
-    </div>
+        <!-- /wp:heading -->
 
+        <!-- wp:group {"className":"flex flex-wrap gap-3","layout":{"type":"default"}} -->
+        <div class="wp-block-group flex flex-wrap gap-3">
+          <!-- wp:originative/badge-pill {"text":"IATA Cargo Agent Accreditation","variant":"secondary","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"FIATA Membership","variant":"secondary","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"ISO 9001","variant":"secondary","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"IATA DGR Certified Staff","variant":"secondary","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"Dangerous Goods Transport License","variant":"secondary","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"Cargo Insurance Provider Registration","variant":"secondary","size":"md"} /-->
+        </div>
+        <!-- /wp:group -->
+      </div>
+      <!-- /wp:group -->
+
+      <!-- wp:group {"className":"p-8 rounded-2xl bg-card border border-border shadow-card","layout":{"type":"default"}} -->
+      <div class="wp-block-group p-8 rounded-2xl bg-card border border-border shadow-card">
+        <!-- wp:heading {"level":3,"className":"text-xl font-semibold text-foreground mb-6"} -->
+        <h3 class="text-xl font-semibold text-foreground mb-6">Regulatory Compliance</h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:group {"className":"flex flex-wrap gap-3","layout":{"type":"default"}} -->
+        <div class="wp-block-group flex flex-wrap gap-3">
+          <!-- wp:originative/badge-pill {"text":"GACA","variant":"accent-soft","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"TGA","variant":"accent-soft","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"WASHAJ","variant":"accent-soft","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"FASAH","variant":"accent-soft","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"SABER","variant":"accent-soft","size":"md"} /-->
+          <!-- wp:originative/badge-pill {"text":"SFDA","variant":"accent-soft","size":"md"} /-->
+        </div>
+        <!-- /wp:group -->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:html -->
     <div class="text-center">
       <h3 class="text-xl font-semibold text-foreground mb-8">Our Partners</h3>
       <div class="flex flex-wrap justify-center gap-6">
