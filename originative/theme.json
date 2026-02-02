@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "custom": true,
+      "customGradient": false,
+      "customDuotone": false,
+      "palette": [
+        { "slug": "primary", "color": "hsl(220 60% 12%)", "name": "Primary" },
+        { "slug": "primary-foreground", "color": "hsl(210 40% 98%)", "name": "Primary Foreground" },
+        { "slug": "accent", "color": "hsl(168 76% 36%)", "name": "Accent" },
+        { "slug": "accent-foreground", "color": "hsl(0 0% 100%)", "name": "Accent Foreground" },
+        { "slug": "background", "color": "hsl(210 25% 98%)", "name": "Background" },
+        { "slug": "foreground", "color": "hsl(222 47% 11%)", "name": "Text" },
+        { "slug": "secondary", "color": "hsl(210 20% 96%)", "name": "Secondary" },
+        { "slug": "secondary-foreground", "color": "hsl(222 47% 11%)", "name": "Secondary Foreground" },
+        { "slug": "muted", "color": "hsl(210 15% 94%)", "name": "Muted" },
+        { "slug": "muted-foreground", "color": "hsl(215 16% 47%)", "name": "Muted Foreground" },
+        { "slug": "card", "color": "hsl(0 0% 100%)", "name": "Card" },
+        { "slug": "card-foreground", "color": "hsl(222 47% 11%)", "name": "Card Foreground" },
+        { "slug": "border", "color": "hsl(214 20% 90%)", "name": "Border" }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "100%"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|background",
+      "text": "var:preset|color|foreground"
+    }
+  }
+}

@@ -43,6 +43,93 @@ if (!class_exists('Scls_Logistics_Nav_Walker')) {
   class Scls_Logistics_Nav_Walker extends Walker_Nav_Menu {}
 }
 
+function scls_logistics_get_menu_items_by_class($location, $class_name) {
+  $locations = get_nav_menu_locations();
+  if (empty($locations[$location])) {
+    return array();
+  }
+
+  $menu_id = (int) $locations[$location];
+  $items = wp_get_nav_menu_items($menu_id);
+  if (!$items) {
+    return array();
+  }
+
+  $matches = array();
+  foreach ($items as $item) {
+    if (!empty($item->classes) && in_array($class_name, $item->classes, true)) {
+      $matches[] = $item;
+    }
+  }
+
+  return $matches;
+}
+
+function scls_logistics_filter_primary_menu_cta($items, $args) {
+  if (empty($args->theme_location) || $args->theme_location !== 'primary') {
+    return $items;
+  }
+  if (empty($args->scls_exclude_cta)) {
+    return $items;
+  }
+
+  $filtered = array();
+  foreach ($items as $item) {
+    if (!empty($item->classes) && in_array('scls-header-cta', $item->classes, true)) {
+      continue;
+    }
+    $filtered[] = $item;
+  }
+
+  return $filtered;
+}
+add_filter('wp_nav_menu_objects', 'scls_logistics_filter_primary_menu_cta', 10, 2);
+
+function scls_logistics_get_cta_link_classes($item, $extra_classes = array()) {
+  $allowed = array('scls-button', 'scls-button-accent', 'scls-call-link', 'w-full');
+  $classes = array();
+
+  if (!empty($item->classes)) {
+    foreach ($item->classes as $class_name) {
+      if (in_array($class_name, $allowed, true)) {
+        $classes[] = $class_name;
+      }
+    }
+  }
+
+  foreach ($extra_classes as $class_name) {
+    if ($class_name && !in_array($class_name, $classes, true)) {
+      $classes[] = $class_name;
+    }
+  }
+
+  return implode(' ', $classes);
+}
+
+$scls_patterns_path = get_theme_file_path('/inc/block-patterns.php');
+if (file_exists($scls_patterns_path)) {
+  require_once $scls_patterns_path;
+} elseif (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+  error_log('[SCLS] Missing block patterns file at ' . $scls_patterns_path);
+}
+
+$scls_shortcodes_path = get_theme_file_path('/inc/shortcodes.php');
+if (file_exists($scls_shortcodes_path)) {
+  require_once $scls_shortcodes_path;
+} elseif (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+  error_log('[SCLS] Missing shortcodes file at ' . $scls_shortcodes_path);
+}
+
+$scls_demo_path = get_theme_file_path('/inc/demo-content.php');
+if (file_exists($scls_demo_path)) {
+  require_once $scls_demo_path;
+  if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+    error_log('[SCLS] Loaded demo content file from ' . $scls_demo_path);
+  }
+} elseif (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+  error_log('[SCLS] Missing demo content file at ' . $scls_demo_path);
+}
+
 function scls_logistics_enqueue_assets() {
   $theme_version = wp_get_theme()->get('Version');
   $theme_uri = get_template_directory_uri();
@@ -71,10 +158,222 @@ function scls_logistics_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'scls_logistics_enqueue_assets');
 
+function scls_logistics_parse_hsl_components($value) {
+  $value = trim((string) $value);
+  if ($value === '') {
+    return null;
+  }
+  $parts = preg_split('/\s+/', str_replace('%', '', $value));
+  if (count($parts) < 3) {
+    return null;
+  }
+  return array(
+    'h' => (float) $parts[0],
+    's' => (float) $parts[1],
+    'l' => (float) $parts[2],
+  );
+}
+
+function scls_logistics_rgb_to_hsl($r, $g, $b) {
+  $r = $r / 255;
+  $g = $g / 255;
+  $b = $b / 255;
+  $max = max($r, $g, $b);
+  $min = min($r, $g, $b);
+  $h = 0;
+  $s = 0;
+  $l = ($max + $min) / 2;
+
+  if ($max !== $min) {
+    $d = $max - $min;
+    $s = $l > 0.5 ? $d / (2 - $max - $min) : $d / ($max + $min);
+    switch ($max) {
+      case $r:
+        $h = ($g - $b) / $d + ($g < $b ? 6 : 0);
+        break;
+      case $g:
+        $h = ($b - $r) / $d + 2;
+        break;
+      default:
+        $h = ($r - $g) / $d + 4;
+        break;
+    }
+    $h = $h / 6;
+  }
+
+  return array(
+    'h' => round($h * 360),
+    's' => round($s * 100),
+    'l' => round($l * 100),
+  );
+}
+
+function scls_logistics_color_to_hsl_components($color, $fallback) {
+  $color = trim((string) $color);
+  if ($color === '') {
+    return $fallback;
+  }
+
+  if (preg_match('/^#([0-9a-f]{3}|[0-9a-f]{6})$/i', $color)) {
+    $hex = ltrim($color, '#');
+    if (strlen($hex) === 3) {
+      $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    }
+    $r = hexdec(substr($hex, 0, 2));
+    $g = hexdec(substr($hex, 2, 2));
+    $b = hexdec(substr($hex, 4, 2));
+    $hsl = scls_logistics_rgb_to_hsl($r, $g, $b);
+    return sprintf('%d %d%% %d%%', $hsl['h'], $hsl['s'], $hsl['l']);
+  }
+
+  if (preg_match('/^rgba?\((.+)\)$/i', $color, $matches)) {
+    $channels = preg_split('/[\s,\/]+/', trim($matches[1]));
+    if (count($channels) >= 3) {
+      $r = (float) $channels[0];
+      $g = (float) $channels[1];
+      $b = (float) $channels[2];
+      $hsl = scls_logistics_rgb_to_hsl($r, $g, $b);
+      return sprintf('%d %d%% %d%%', $hsl['h'], $hsl['s'], $hsl['l']);
+    }
+  }
+
+  if (preg_match('/^hsla?\((.+)\)$/i', $color, $matches)) {
+    $parts = preg_split('/[\s,\/]+/', trim($matches[1]));
+    if (count($parts) >= 3) {
+      $h = (float) $parts[0];
+      $s = (float) str_replace('%', '', $parts[1]);
+      $l = (float) str_replace('%', '', $parts[2]);
+      return sprintf('%d %d%% %d%%', round($h), round($s), round($l));
+    }
+  }
+
+  return $fallback;
+}
+
+function scls_logistics_get_palette_value($palette, $slug) {
+  if (empty($palette) || !is_array($palette)) {
+    return null;
+  }
+
+  $groups = array();
+  if (isset($palette['theme']) || isset($palette['custom']) || isset($palette['default'])) {
+    foreach ($palette as $group) {
+      if (is_array($group)) {
+        $groups[] = $group;
+      }
+    }
+  } else {
+    $groups[] = $palette;
+  }
+
+  foreach ($groups as $group) {
+    foreach ($group as $item) {
+      if (!is_array($item)) {
+        continue;
+      }
+      if (isset($item['slug']) && $item['slug'] === $slug && isset($item['color'])) {
+        return $item['color'];
+      }
+    }
+  }
+
+  return null;
+}
+
+function scls_logistics_adjust_hsl($components, $delta_s, $delta_l) {
+  $h = isset($components['h']) ? (float) $components['h'] : 0;
+  $s = isset($components['s']) ? (float) $components['s'] : 0;
+  $l = isset($components['l']) ? (float) $components['l'] : 0;
+
+  $s = max(0, min(100, $s + $delta_s));
+  $l = max(0, min(100, $l + $delta_l));
+
+  return sprintf('%d %d%% %d%%', round($h), round($s), round($l));
+}
+
+function scls_logistics_generate_color_overrides() {
+  $defaults = array(
+    'primary' => '220 60% 12%',
+    'primary-foreground' => '210 40% 98%',
+    'accent' => '168 76% 36%',
+    'accent-foreground' => '0 0% 100%',
+    'background' => '210 25% 98%',
+    'foreground' => '222 47% 11%',
+    'secondary' => '210 20% 96%',
+    'secondary-foreground' => '222 47% 11%',
+    'muted' => '210 15% 94%',
+    'muted-foreground' => '215 16% 47%',
+    'card' => '0 0% 100%',
+    'card-foreground' => '222 47% 11%',
+    'border' => '214 20% 90%',
+  );
+
+  $palette = array();
+  if (function_exists('wp_get_global_settings')) {
+    $palette = wp_get_global_settings(array('color', 'palette'));
+  }
+
+  $colors = array();
+  foreach ($defaults as $slug => $fallback) {
+    $palette_value = scls_logistics_get_palette_value($palette, $slug);
+    $colors[$slug] = scls_logistics_color_to_hsl_components($palette_value, $fallback);
+  }
+
+  $primary_components = scls_logistics_parse_hsl_components($colors['primary']);
+  $accent_components = scls_logistics_parse_hsl_components($colors['accent']);
+  $primary_components = $primary_components ? $primary_components : scls_logistics_parse_hsl_components($defaults['primary']);
+  $accent_components = $accent_components ? $accent_components : scls_logistics_parse_hsl_components($defaults['accent']);
+
+  $navy_light = scls_logistics_adjust_hsl($primary_components, -15, 8);
+  $navy_dark = scls_logistics_adjust_hsl($primary_components, 5, -4);
+  $accent_light = scls_logistics_adjust_hsl($accent_components, -16, 9);
+  $accent_dark = scls_logistics_adjust_hsl($accent_components, 4, -8);
+
+  $css = ':root{' .
+    '--primary:' . $colors['primary'] . ';' .
+    '--primary-foreground:' . $colors['primary-foreground'] . ';' .
+    '--accent:' . $colors['accent'] . ';' .
+    '--accent-foreground:' . $colors['accent-foreground'] . ';' .
+    '--background:' . $colors['background'] . ';' .
+    '--foreground:' . $colors['foreground'] . ';' .
+    '--secondary:' . $colors['secondary'] . ';' .
+    '--secondary-foreground:' . $colors['secondary-foreground'] . ';' .
+    '--muted:' . $colors['muted'] . ';' .
+    '--muted-foreground:' . $colors['muted-foreground'] . ';' .
+    '--card:' . $colors['card'] . ';' .
+    '--card-foreground:' . $colors['card-foreground'] . ';' .
+    '--border:' . $colors['border'] . ';' .
+    '--input:' . $colors['border'] . ';' .
+    '--ring:' . $colors['accent'] . ';' .
+    '--surface-sunken:' . $colors['secondary'] . ';' .
+    '--surface-elevated:' . $colors['card'] . ';' .
+    '--navy:' . $colors['primary'] . ';' .
+    '--navy-light:' . $navy_light . ';' .
+    '--navy-dark:' . $navy_dark . ';' .
+    '--accent-light:' . $accent_light . ';' .
+    '--accent-dark:' . $accent_dark . ';' .
+    '}';
+
+  return $css;
+}
+
+function scls_logistics_enqueue_color_overrides() {
+  $css = scls_logistics_generate_color_overrides();
+  if ($css) {
+    wp_add_inline_style('scls-main', $css);
+  }
+}
+add_action('wp_enqueue_scripts', 'scls_logistics_enqueue_color_overrides', 20);
+
 function scls_logistics_setup() {
   add_theme_support('title-tag');
   add_theme_support('post-thumbnails');
   add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script'));
+  add_theme_support('align-wide');
+  add_theme_support('responsive-embeds');
+  add_theme_support('block-patterns');
+  add_theme_support('editor-styles');
+  add_editor_style('style.css');
 
   register_nav_menus(array(
     'primary' => __('Primary Menu', 'scls-logistics'),
