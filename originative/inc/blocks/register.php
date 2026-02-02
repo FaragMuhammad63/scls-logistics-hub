@@ -185,5 +185,28 @@ function originative_register_blocks() {
       'render_callback' => 'originative_render_service_card_detailed',
     ));
   }
+
+  $hero_dir = $base_dir . '/hero-background';
+  $hero_json = $hero_dir . '/block.json';
+  if (file_exists($hero_json)) {
+    require_once $hero_dir . '/render.php';
+    $hero_script = 'originative-hero-background-editor';
+    $hero_script_path = $hero_dir . '/index.js';
+    $hero_script_uri = $base_uri . '/hero-background/index.js';
+    $hero_version = file_exists($hero_script_path) ? filemtime($hero_script_path) : wp_get_theme()->get('Version');
+
+    wp_register_script(
+      $hero_script,
+      $hero_script_uri,
+      array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-data'),
+      $hero_version,
+      true
+    );
+
+    register_block_type($hero_dir, array(
+      'editor_script' => $hero_script,
+      'render_callback' => 'originative_render_hero_background',
+    ));
+  }
 }
 add_action('init', 'originative_register_blocks');

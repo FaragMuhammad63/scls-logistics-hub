@@ -1,0 +1,48 @@
+﻿{
+  "apiVersion": 2,
+  "name": "originative/hero-background",
+  "title": "Originative Hero Background",
+  "category": "originative",
+  "icon": "format-image",
+  "description": "Decorative hero background layers with optional image mode.",
+  "textdomain": "scls-logistics",
+  "attributes": {
+    "mode": {
+      "type": "string",
+      "default": "color"
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 40
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "var(--wp--preset--color--primary)"
+    },
+    "patternOpacity": {
+      "type": "number",
+      "default": 50
+    },
+    "showBlobs": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "className": true
+  },
+  "editorStyle": "file:./editor.css"
+}
